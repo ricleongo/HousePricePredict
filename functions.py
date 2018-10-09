@@ -5,7 +5,20 @@ from functools import reduce
 
 def calculate_percentage(value, total):
     return (value / total) * 100
-    
+
+def get_zillow_column_des() :
+    return {
+        "2010": "Zillow Median Value Housing 2010",
+        "2011": "Zillow Median Value Housing 2011",
+        "2012": "Zillow Median Value Housing 2012",
+        "2013": "Zillow Median Value Housing 2013",
+        "2014": "Zillow Median Value Housing 2014",
+        "2015": "Zillow Median Value Housing 2015",
+        "2016": "Zillow Median Value Housing 2016",
+        "2017": "Zillow Median Value Housing 2017",
+        "2018": "Zillow Median Value Housing 2018"
+    }  
+
 # funtion that bring the column names per year.
 def get_column_des(year) :
     return {

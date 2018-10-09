@@ -65,7 +65,7 @@ def print_message(message):
     print("-----------------------------------------")
 
 
-def print_plot(data_set, x_values, limX):
+def print_plot(data_set, x_values, title, xlabel, ylable, limX):
 
     fig, ax = plt.subplots()
 
@@ -77,6 +77,10 @@ def print_plot(data_set, x_values, limX):
         ax.plot(x_values, value, label=data_set.index[i][1], linewidth = 4)
         ax.scatter(x_values, value, label=None, s = 80)
 
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylable)
+
     ax.set_xlim(left=limX[0], right=limX[1])
     ax.legend(loc="upper right")
     ax.grid()
@@ -84,7 +88,7 @@ def print_plot(data_set, x_values, limX):
     fig.set_size_inches(16, 10)
     fig.show(warn=False)
 
-def print_bars(data_set, x_values, limX):
+def print_bars(data_set, x_values, title, xlabel, ylable, limX):
     fig, ax = plt.subplots()
 
     cm = plt.get_cmap('tab20')
@@ -94,6 +98,10 @@ def print_bars(data_set, x_values, limX):
     for i in range(len(data_set.index)):
         value = data_set.iloc[i,:]    
         ax.bar(x_values, value, label=data_set.index[i][1])
+
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylable)
 
     ax.set_xlim(left=limX[0], right=limX[1])
     ax.legend(loc="upper right")

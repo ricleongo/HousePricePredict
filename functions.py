@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.stats import sem
 from functools import reduce
 
 def calculate_percentage(value, total):
@@ -31,6 +32,7 @@ def get_column_des(year) :
         "B19301_001E": "Per Capita Income {}".format(year),
         "B25077_001E": "Median Value Housing Units {}".format(year),
         "B17001_002E": "Poverty Count {}".format(year)
+        # "B23025_005E": "Unemployment Count {}".format(year),
     }
 
 # Merge method on all years.
@@ -109,3 +111,19 @@ def print_bars(data_set, x_values, title, xlabel, ylable, limX):
 
     fig.set_size_inches(16, 10)
     fig.show(warn=False)    
+
+def print_trendline(x, y):
+    z = np.polyfit(x, y, 1)
+    p = np.poly1d(z)
+    plt.plot(x,  p(x), ":")
+
+def get_std_error(data, div):
+
+    lim = len(data) // div
+
+    samples = [data.iloc[(i * div):(i * div + div)] for i in range(0, lim)]
+
+    means = [np.mean(s) for s in samples]
+    standard_errors = [sem(s) for s in samples]
+
+    return np.arange(0, len(means)), means, standard_errors, div

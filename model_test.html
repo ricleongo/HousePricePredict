@@ -1,0 +1,62 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<h2>Use Linear Regression model to predict house prices:</h2>
+<p><br /></p>
+
+<table>
+    <tr>
+        <th colspan="2" style="text-align:left">Estate: <strong>Georgia</strong></th>
+    </tr>
+    <tr>
+        <td>County:</td>
+        <td>
+            <select id="county" style="width:240px">
+                <option value="13" selected="selected">Barrow County, Georgia</option>
+                <option value="15">Bartow County, Georgia</option>
+                <option value="45">Carroll County, Georgia</option>
+                <option value="57">Cherokee County, Georgia</option>
+                <option value="63">Clayton County, Georgia</option>
+                <option value="67">Cobb County, Georgia</option>
+                <option value="77">Coweta County, Georgia</option>
+                <option value="85">Dawson County, Georgia</option>
+                <option value="89">DeKalb County, Georgia</option>
+                <option value="97">Douglas County, Georgia</option>
+                <option value="113">Fayette County, Georgia</option>
+                <option value="117">Forsyth County, Georgia</option>
+                <option value="121">Fulton County, Georgia</option>
+                <option value="135">Gwinnett County, Georgia</option>
+                <option value="151">Henry County, Georgia</option>
+                <option value="171">Lamar County, Georgia</option>
+                <option value="199">Meriwether County, Georgia</option>
+                <option value="227">Pickens County, Georgia</option>
+                <option value="297">Walton County, Georgia</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Aprox. Per Capita Income:
+        </td>
+        <td>
+            <input id="percapita" type="number" placeholder="Per Capita Income..." style="width:240px" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><button onclick="clickButon()">Click here to predict...</button></td>
+    </tr>
+</table>
+<p><br /></p>
+
+<h3 id="prediction" style="font-size:16px; color:#336699;"></h3>
+
+<script>
+    function clickButon() {
+        let message = {
+            county: parseInt($('#county').val()),
+            percapita: parseInt($('#percapita').val())
+        };
+
+        $.post('http://localhost:5000/LinearRegressionPredict', JSON.stringify(message), function (response) {
+            $("#prediction").text(response);
+        });
+    }
+</script>
